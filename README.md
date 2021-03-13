@@ -23,7 +23,7 @@ JustBreweryIt.com will do the following for you:
 
 *Address, hours, menu and phone details of the brewer will be populated*
 
- 
+--- 
 
 ## Data Feeds 
 
@@ -36,7 +36,7 @@ JustBreweryIt.com will do the following for you:
 
 [Open Brewery DB](https://api.openbrewerydb.org/breweries)
 
- 
+--- 
 
 ## Functional Requirements
 
@@ -136,7 +136,7 @@ Ratings
 
 Reviews
 
- 
+--- 
 
 ## SCRUM Roles ##
 -**Devops/Product Owner/ Scrum Master:** Tanmay shrivastava
@@ -145,7 +145,7 @@ Reviews
 
 -**Integration Developer:** Pratibha Tiwari and Tanmay shrivastava
 
- 
+--- 
 
 ## Weekly Meetings ##
 
