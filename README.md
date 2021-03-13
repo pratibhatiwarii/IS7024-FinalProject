@@ -140,7 +140,9 @@ Reviews
 
 ## SCRUM Roles ##
 -Devops/Product Owner/ Scrum Master: Tanmay shrivastava
+
 -Frontend Developer: Pratibha Singh and Shivani Vyas
+
 -Integration Developer: Pratibha Tiwari and Tanmay shrivastava
 
  
