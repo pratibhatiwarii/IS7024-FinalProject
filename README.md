@@ -11,8 +11,8 @@
 
  
 
-Looking for a brewery near you or in a particular city to have a good time? We got you covered! Our websites provides a complete and comprehensive state wise list of breweries based in the U.S.
-JustBreweryIt.com will do the following for you: 
+Looking for a brewery near you or in a particular city to have a good time? We got you covered! Our website provides a complete and comprehensive state wise list of breweries based in the U.S.
+JustBrewIt.com will do the following for you: 
 
  
 
@@ -24,11 +24,11 @@ JustBreweryIt.com will do the following for you:
 
  
 
-*search near by places to the brewery you selct*
+*Search near by places to the brewery you select*
 
  
 
-*Address, hours, menu and phone details of the brewer will be populated*
+*Address, hours, menu, and phone details of the brewer will be populated*
 
 --- 
 
