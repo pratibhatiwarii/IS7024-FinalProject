@@ -14,13 +14,7 @@ namespace JustBrewIt.Pages
         public object MyBreweryAPI { get; private set; }
 
         public void OnGet()
-        {
-            using (var webClient = new WebClient())
-            {
-                var jsonString = webClient.DownloadString("https://api.openbrewerydb.org/breweries?by_city=cincinnati&brewery_type=regional");
-                Welcome[] welcome = Welcome.FromJson(jsonString);
-                ViewData["MyBreweryAPI"] = MyBreweryAPI;
-            }
+        { 
         }
     }
 }

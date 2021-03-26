@@ -1,0 +1,23 @@
+﻿@page
+@model JustBrewIt.Pages.BreweryModel
+@{
+    var MyBreweryAPI = (QuickType.Welcome[])ViewData["MyBreweryAPI"];
+}
+@{
+    foreach (QuickType.Welcome welcome in MyBreweryAPI)
+    {   <table>
+    <th>
+        <tr>
+            <td>Name</td>
+            <td>Type</td>
+            <td>Phone</td>
+        </tr>
+    </th>
+    <tr>
+        <td>@welcome.Name </td>
+        <td>@welcome.BreweryType</td>
+        <td>@welcome.Phone</td>
+    </tr>
+</table>
+    }
+}
