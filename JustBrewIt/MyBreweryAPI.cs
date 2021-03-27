@@ -161,12 +161,17 @@ namespace QuickType
 
         public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
         {
-            if (reader.TokenType == JsonToken.Null) return null;
+           if (reader.TokenType == JsonToken.Null) return null;
             var value = serializer.Deserialize<string>(reader);
-            if (value == "Cincinnati")
+           if (value == "Cincinnati")
             {
                 return City.Cincinnati;
             }
+           else
+            {
+                return value;
+            }
+            
             throw new Exception("Cannot unmarshal type City");
         }
 
