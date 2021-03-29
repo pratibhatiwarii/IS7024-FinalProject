@@ -32,13 +32,16 @@
 </form>
 @{ if (Model.isSearchCity || Model.isSearchType)
     {
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Brewery Type</th>
-                <th scope="col">Phone</th>
-            </tr>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Brewery Type</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Latitude</th>
+                    <th scope="col">Longitude</th>
+                    <th></th>
+                </tr>
         </thead>
         @foreach (JustBrewItQuickType.Welcome welcome in BreweryAPI)
         {
@@ -47,12 +50,15 @@
                     <td>@welcome.Name</td>
                     <td>@welcome.BreweryType</td>
                     <td>@welcome.Phone</td>
+                    <td>@welcome.Latitude</td>
+                    <td>@welcome.Longitude</td>
+                    <td>@welcome.City</td>
                 </tr>
             </tbody>
 
         }
-    </table>
+        </table>
 
             }
-            }
+}
 
