@@ -26,21 +26,21 @@ namespace JustBrewIt.Pages
             isSearchCity = false;
             isSearchType = false;
         }
-        [HttpPost]
+        
         public void OnPost()
         {
             string city = BreweryCity;
             string type = BreweryType;
 
-            if(BreweryCity == null && BreweryType != null) { 
+           if(city == null && type != null) { 
 
             Url = "https://api.openbrewerydb.org/breweries?by_state=ohio&by_type=" + BreweryType;
            }
-           else if(BreweryCity != null && BreweryType != null)
+           else if(city != null && type != null)
             {
-                Url = "https://api.openbrewerydb.org/breweries?by_type=" + type + "&by_city" + city;
+                Url = "https://api.openbrewerydb.org/breweries?by_type=" + type + "&by_city=" + city;
             }
-            else if(BreweryCity != null && BreweryType == null)
+            else
             {
                 Url = "https://api.openbrewerydb.org/breweries?by_city=" + city;
             }
