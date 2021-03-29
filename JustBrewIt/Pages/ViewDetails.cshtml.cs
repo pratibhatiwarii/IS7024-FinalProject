@@ -24,12 +24,17 @@ namespace JustBrewIt.Pages
                 string input = "Mad Tree Brewing";
                 string inputType = "&inputtype=textquery";
                 Url = api + input + inputType + fields + key;
-                JObject o = JObject.Parse(Url);
-                string jsonString = o.ToString();
-                
-                var google = GoogleRecords.FromJson(jsonString);
-              //  GoogleAPI = google;
-               ViewData["GoogleAPI"] = google;
+                string jsonString = webClient.DownloadString(Url);
+                JObject jsonObject = JObject.Parse(jsonString);
+                GoogleRecords google = GoogleRecords.FromJson(jsonString);
+                List<Candidate> candidates = google.Candidates;
+                List<Candidate> newlist = new List<Candidate>();
+
+                foreach (var x in candidates)
+                {
+                    newlist.Add(x);
+                }
+                ViewData["Candidates"] = newlist;
             }
         }
     }

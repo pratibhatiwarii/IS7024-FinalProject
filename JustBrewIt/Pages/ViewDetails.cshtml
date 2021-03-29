@@ -1,34 +1,30 @@
 ﻿@page
 @model JustBrewIt.Pages.ViewDetailsModel
 @{
-    var GoogleAPI = (JustBrewItGoogle.GoogleRecords[])ViewData["GoogleAPI"];
+List<JustBrewItGoogle.Candidate>
+GoogleReco = (List<JustBrewItGoogle.Candidate>
+)ViewData["Candidates"];
 }
 
-{
 <table class="table table-bordered">
     <thead>
         <tr>
-            <th scope="col">Business Status</th>
+            <th scope="col">Name</th>
             <th scope="col">Address</th>
-            <th scope="col">Geometry</th>
+            <th scope="col">Business Status</th>
             <th scope="col">Price Level</th>
             <th scope="col">Rating</th>
-            <th></th>
         </tr>
     </thead>
-    @foreach (var google in GoogleAPI)
+    @foreach (var x in GoogleReco)
     {
-        <tbody>
-            <tr>
-                <td>@google.Candidates<></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-        </tbody>
-
-    }
+<tbody>
+    <tr>
+        <td>@x.Name</td>
+        <td>@x.FormattedAddress</td>
+        <td>@x.BusinessStatus</td>
+        <td>@x.PriceLevel</td>
+        <td>@x.Rating</td>
+    </tr>
+</tbody>}
 </table>
-}
