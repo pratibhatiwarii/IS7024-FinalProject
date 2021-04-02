@@ -48,8 +48,8 @@ namespace JustBrewIt.Pages
             using (var webClient = new WebClient())
             {
                 string jsonString = webClient.DownloadString(Url);
-                Welcome[] welcome = Welcome.FromJson(jsonString);
-                ViewData["BreweryAPI"] = welcome;
+                JustBrewIT[] justBrewITs = JustBrewIT.FromJson(jsonString);
+                ViewData["BreweryAPI"] = justBrewITs;
             }
 
             isSearchType = true;

@@ -28,7 +28,7 @@ namespace JustBrewItQuickType
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
 
-    public partial class Welcome
+    public partial class JustBrewIT
     {
         [JsonProperty("id", NullValueHandling = NullValueHandling.Ignore)]
         public long? Id { get; set; }
@@ -82,17 +82,17 @@ namespace JustBrewItQuickType
         public DateTimeOffset? CreatedAt { get; set; }
     }
 
-    public partial class Welcome
+    public partial class JustBrewIT
     {
-        public static Welcome[] FromJson(string json)
+        public static JustBrewIT[] FromJson(string json)
         {
-            return JsonConvert.DeserializeObject<Welcome[]>(json, JustBrewItQuickType.Converter.Settings);
+            return JsonConvert.DeserializeObject<JustBrewIT[]>(json, JustBrewItQuickType.Converter.Settings);
         }
     }
 
     public static class Serialize
     {
-        public static string ToJson(this Welcome[] self)
+        public static string ToJson(this JustBrewIT[] self)
         {
             return JsonConvert.SerializeObject(self, JustBrewItQuickType.Converter.Settings);
         }

@@ -1,7 +1,7 @@
 ﻿@page
 @model JustBrewIt.Pages.SearchModel
 @{
-    var BreweryAPI = (JustBrewItQuickType.Welcome[])ViewData["BreweryAPI"];
+    var BreweryAPI = (JustBrewItQuickType.JustBrewIT[])ViewData["BreweryAPI"];
 }
 
 <form action="" method="POST" style="margin-top: 50px;">
@@ -43,15 +43,15 @@
                     <th></th>
                 </tr>
         </thead>
-        @foreach (JustBrewItQuickType.Welcome welcome in BreweryAPI)
+        @foreach (JustBrewItQuickType.JustBrewIT justBrewITs in BreweryAPI)
         {
             <tbody>
                 <tr>
-                    <td>@welcome.Name</td>
-                    <td>@welcome.BreweryType</td>
-                    <td>@welcome.Phone</td>
-                    <td>@welcome.Latitude</td>
-                    <td>@welcome.Longitude</td>
+                    <td>@justBrewITs.Name</td>
+                    <td>@justBrewITs.BreweryType</td>
+                    <td>@justBrewITs.Phone</td>
+                    <td>@justBrewITs.Latitude</td>
+                    <td>@justBrewITs.Longitude</td>
                 </tr>
             </tbody>
 

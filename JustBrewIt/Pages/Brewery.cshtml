@@ -1,10 +1,10 @@
 ﻿@page
 @model JustBrewIt.Pages.BreweryModel
 @{
-    var MyBreweryAPI = (QuickType.Welcome[])ViewData["MyBreweryAPI"];
+    var MyBreweryAPI = (BreweryQuickType.BreweryAPI[])ViewData["MyBreweryAPI"];
 }
 @{
-    foreach (QuickType.Welcome welcome in MyBreweryAPI)
+    foreach (BreweryQuickType.BreweryAPI brewery in MyBreweryAPI)
     {   <table class="table table-bordered">
     <thead>
         <tr>
@@ -15,9 +15,9 @@
     </thead>
     <tbody>
         <tr>
-            <td>@welcome.Name</td>
-            <td>@welcome.BreweryType</td>
-            <td>@welcome.Phone</td>
+            <td>@brewery.Name</td>
+            <td>@brewery.BreweryType</td>
+            <td>@brewery.Phone</td>
         </tr>
     </tbody>
 </table>
