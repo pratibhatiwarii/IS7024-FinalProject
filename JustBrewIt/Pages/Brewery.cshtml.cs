@@ -18,9 +18,16 @@ namespace JustBrewIt.Pages
 
             using (var webClient = new WebClient())
             {
-                string jsonString = webClient.DownloadString("https://api.openbrewerydb.org/breweries?by_city=cincinnati&brewery_type=regional");
-                Welcome[] welcome = Welcome.FromJson(jsonString);
-                ViewData["MyBreweryAPI"] = welcome;
+                try
+                {
+                    string jsonString = webClient.DownloadString("https://api.openbrewerydb.org/breweries?by_city=cincinnati&brewery_type=regional");
+                    Welcome[] welcome = Welcome.FromJson(jsonString);
+                    ViewData["MyBreweryAPI"] = welcome;
+                }
+                catch(Exception)
+                {
+                    Console.WriteLine("Something went wrong!");
+                }
             }
         }
     }
