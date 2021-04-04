@@ -6,24 +6,18 @@
 
 <form action="" method="POST" style="margin-top: 50px;">
     <div class="form-group">
-        <label class="control-label" for="BreweryCity">Search Brewries by City</label>
+        <label class="control-label" for="BreweryCity">Enter City Name Here</label>
         <input type="text" class="form-control" name="BreweryCity" id="BreweryCity" />
     </div>
 
     <div class="form-group">
-        <label class="control-label" for="BreweryType">Search Brewries by Type</label>
+        <label class="control-label" for="BreweryType">Brewery Type</label>
         <select class="form-control" name="BreweryType" id="BreweryType">
-            <option value=""></option>
-            <option value="micro">Micro</option>
-            <option value="nano">Nano</option>
-            <option value="regional">Regional</option>
-            <option value="brewpub">Brewpub</option>
-            <option value="large">Large</option>
-            <option value="planning">Planning</option>
-            <option value="bar">Bar</option>
-            <option value="contract">Contract</option>
-            <option value="proprietor">Proprietor</option>
-            <option value="closed">Closed</option>
+            <option value="">Please Select</option>
+            @foreach (var brewCat in Model.BreweryCategories)
+            {
+                <option value="@brewCat"> @brewCat </option>
+            }
         </select>
     </div>
     <div class="form-group">
@@ -32,32 +26,40 @@
 </form>
 @{ if (Model.isSearchCity || Model.isSearchType)
     {
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Brewery Type</th>
-                    <th scope="col">Phone</th>
-                    <th scope="col">Latitude</th>
-                    <th scope="col">Longitude</th>
-                    <th></th>
-                </tr>
-        </thead>
-        @foreach (JustBrewItQuickType.Welcome welcome in BreweryAPI)
+        <!-- Check BreweryAPI has data then populate table.If not display "No data" Message-->
+        @if (BreweryAPI.Length > 0)
         {
-            <tbody>
-                <tr>
-                    <td>@welcome.Name</td>
-                    <td>@welcome.BreweryType</td>
-                    <td>@welcome.Phone</td>
-                    <td>@welcome.Latitude</td>
-                    <td>@welcome.Longitude</td>
-                </tr>
-            </tbody>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Brewery Type</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Latitude</th>
+                        <th scope="col">Longitude</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                @foreach (JustBrewItQuickType.Welcome welcome in BreweryAPI)
+                {
+                    <tbody>
+                        <tr>
+                            <td>@welcome.Name</td>
+                            <td>@welcome.BreweryType</td>
+                            <td>@welcome.Phone</td>
+                            <td>@welcome.Latitude</td>
+                            <td>@welcome.Longitude</td>
+                        </tr>
+                    </tbody>
 
+                }
+            </table>
         }
-        </table>
-
-            }
+        else
+        {
+            <h3><strong>Information doesnt exists for this search response</strong></h3>
+        }
+    }
 }
+
 

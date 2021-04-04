@@ -5,22 +5,23 @@
 }
 @{
     foreach (QuickType.Welcome welcome in MyBreweryAPI)
-    {   <table class="table table-bordered">
-    <thead>
+    {   
+     <table class="table table-bordered">
+       <thead>
         <tr>
             <th scope="col">Name</th>
             <th scope="col">Brewery Type</th>
             <th scope="col">Phone</th>
         </tr>
-    </thead>
-    <tbody>
+       </thead>
+      <tbody>
         <tr>
             <td>@welcome.Name</td>
             <td>@welcome.BreweryType</td>
             <td>@welcome.Phone</td>
         </tr>
-    </tbody>
-</table>
+      </tbody>
+     </table>
 
     }
 }

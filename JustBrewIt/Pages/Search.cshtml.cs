@@ -21,6 +21,8 @@ namespace JustBrewIt.Pages
         public bool isSearchType { get; set; }
         public string Url { get; set; }
 
+        public readonly string[] BreweryCategories = {"Micro", "Nano", "Regional", "Brewpub","Large","Planning","Bar","Contract","Proprietor","Closed"};
+          
         public void OnGet()
         {
             isSearchCity = false;
@@ -47,9 +49,16 @@ namespace JustBrewIt.Pages
             
             using (var webClient = new WebClient())
             {
-                string jsonString = webClient.DownloadString(Url);
-                Welcome[] welcome = Welcome.FromJson(jsonString);
-                ViewData["BreweryAPI"] = welcome;
+               try
+                {
+                    string jsonString = webClient.DownloadString(Url);
+                    Welcome[] welcome = Welcome.FromJson(jsonString);
+                    ViewData["BreweryAPI"] = welcome;
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Something went wrong!");
+                }
             }
 
             isSearchType = true;
