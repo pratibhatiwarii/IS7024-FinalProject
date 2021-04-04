@@ -5,7 +5,9 @@ using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using JustBrewItQuickType;
+using JustBrewIt;
+using MyBrewery;
+
 
 namespace JustBrewIt.Pages
 {
@@ -48,8 +50,8 @@ namespace JustBrewIt.Pages
             using (var webClient = new WebClient())
             {
                 string jsonString = webClient.DownloadString(Url);
-                Welcome[] welcome = Welcome.FromJson(jsonString);
-                ViewData["BreweryAPI"] = welcome;
+                BrewIT[] justBrewITs = BrewIT.FromJson(jsonString);
+                ViewData["Brewery"] = justBrewITs;
             }
 
             isSearchType = true;

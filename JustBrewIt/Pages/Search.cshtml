@@ -1,35 +1,34 @@
 ﻿@page
 @model JustBrewIt.Pages.SearchModel
 @{
-    var BreweryAPI = (JustBrewItQuickType.Welcome[])ViewData["BreweryAPI"];
+
+    ViewData["Title"] = "Search Brewery";
+    var Brewery = (JustBrewIt.BrewIT[])ViewData["BreweryAPI"];
+
+
 }
 
 <form action="" method="POST" style="margin-top: 50px;">
-    <div class="form-group">
-        <label class="control-label" for="BreweryCity">Search Brewries by City</label>
-        <input type="text" class="form-control" name="BreweryCity" id="BreweryCity" />
-    </div>
+    <label width="30" class="control-label" for="BreweryCity">Search Brewries by City</label>
+    <input type="text" placeholder="Enter city name" name="BreweryCity" id="BreweryCity" />
 
-    <div class="form-group">
-        <label class="control-label" for="BreweryType">Search Brewries by Type</label>
-        <select class="form-control" name="BreweryType" id="BreweryType">
-            <option value=""></option>
-            <option value="micro">Micro</option>
-            <option value="nano">Nano</option>
-            <option value="regional">Regional</option>
-            <option value="brewpub">Brewpub</option>
-            <option value="large">Large</option>
-            <option value="planning">Planning</option>
-            <option value="bar">Bar</option>
-            <option value="contract">Contract</option>
-            <option value="proprietor">Proprietor</option>
-            <option value="closed">Closed</option>
-        </select>
-    </div>
-    <div class="form-group">
-        <input type="submit" value="Search" class="btn btn-sm btn-primary" />
-    </div>
+    <label class="control-label" for="BreweryType">Search Brewries by Type</label>
+    <select class="featurette-heading"  name="BreweryType" id="BreweryType">
+        <option value="">Select type</option>
+        <option value="micro">Micro</option>
+        <option value="nano">Nano</option>
+        <option value="regional">Regional</option>
+        <option value="brewpub">Brewpub</option>
+        <option value="large">Large</option>
+        <option value="planning">Planning</option>
+        <option value="bar">Bar</option>
+        <option value="contract">Contract</option>
+        <option value="proprietor">Proprietor</option>
+        <option value="closed">Closed</option>
+    </select> &nbsp;&nbsp;
+    <input type="submit" value="Search"  class="btn btn-sm btn-primary" />
 </form>
+<hr />
 @{ if (Model.isSearchCity || Model.isSearchType)
     {
         <table class="table table-bordered">
@@ -43,15 +42,15 @@
                     <th></th>
                 </tr>
         </thead>
-        @foreach (JustBrewItQuickType.Welcome welcome in BreweryAPI)
+        @foreach (JustBrewIt.BrewIT justBrewITs in Brewery)
         {
             <tbody>
                 <tr>
-                    <td>@welcome.Name</td>
-                    <td>@welcome.BreweryType</td>
-                    <td>@welcome.Phone</td>
-                    <td>@welcome.Latitude</td>
-                    <td>@welcome.Longitude</td>
+                    <td>@justBrewITs.Name</td>
+                    <td>@justBrewITs.BreweryType</td>
+                    <td>@justBrewITs.Phone</td>
+                    <td>@justBrewITs.Latitude</td>
+                    <td>@justBrewITs.Longitude</td>
                 </tr>
             </tbody>
 

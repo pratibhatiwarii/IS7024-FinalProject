@@ -6,16 +6,15 @@
 //
 //    var welcome = Welcome.FromJson(jsonString);
 
-namespace QuickType
+namespace MyBrewery
 {
     using System;
     using System.Collections.Generic;
-
     using System.Globalization;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
 
-    public partial class Welcome
+    public partial class Brewery
     {
         [JsonProperty("id")]
         public long Id { get; set; }
@@ -77,14 +76,14 @@ namespace QuickType
 
     public enum State { Ohio };
 
-    public partial class Welcome
+    public partial class Brewery
     {
-        public static Welcome[] FromJson(string json) => JsonConvert.DeserializeObject<Welcome[]>(json, QuickType.Converter.Settings);
+        public static Brewery[] FromJson(string json) => JsonConvert.DeserializeObject<Brewery[]>(json, MyBrewery.Converter.Settings);
     }
 
     public static class Serialize
     {
-        public static string ToJson(this Welcome[] self) => JsonConvert.SerializeObject(self, QuickType.Converter.Settings);
+        public static string ToJson(this Brewery[] self) => JsonConvert.SerializeObject(self, MyBrewery.Converter.Settings);
     }
 
     internal static class Converter

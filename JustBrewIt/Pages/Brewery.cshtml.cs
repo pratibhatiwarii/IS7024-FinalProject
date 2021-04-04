@@ -5,7 +5,7 @@ using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using QuickType;
+using MyBrewery;
 
 namespace JustBrewIt.Pages
 {
@@ -19,8 +19,8 @@ namespace JustBrewIt.Pages
             using (var webClient = new WebClient())
             {
                 string jsonString = webClient.DownloadString("https://api.openbrewerydb.org/breweries?by_city=cincinnati&brewery_type=regional");
-                Welcome[] welcome = Welcome.FromJson(jsonString);
-                ViewData["MyBreweryAPI"] = welcome;
+                Brewery[] brewery = Brewery.FromJson(jsonString);
+                ViewData["Brewery"] = brewery;
             }
         }
     }
