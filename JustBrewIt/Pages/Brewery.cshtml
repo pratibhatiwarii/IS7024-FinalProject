@@ -1,10 +1,10 @@
 ﻿@page
 @model JustBrewIt.Pages.BreweryModel
 @{
-    var MyBreweryAPI = (BreweryQuickType.BreweryAPI[])ViewData["MyBreweryAPI"];
+    var MyBrewery = (MyBrewery.Brewery[])ViewData["MyBrewery"];
 }
 @{
-    foreach (BreweryQuickType.BreweryAPI brewery in MyBreweryAPI)
+    foreach (MyBrewery.Brewery brewery in MyBrewery)
     {   <table class="table table-bordered">
     <thead>
         <tr>

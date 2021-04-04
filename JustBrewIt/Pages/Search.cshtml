@@ -2,8 +2,8 @@
 @model JustBrewIt.Pages.SearchModel
 @{
 
-    ViewData["Title"] = "Search Page";
-    var BreweryAPI = (JustBrewItQuickType.JustBrewIT[])ViewData["BreweryAPI"];
+    ViewData["Title"] = "Search Brewery";
+    var Brewery = (JustBrewIt.BrewIT[])ViewData["BreweryAPI"];
 
 
 }
@@ -42,7 +42,7 @@
                     <th></th>
                 </tr>
         </thead>
-        @foreach (JustBrewItQuickType.JustBrewIT justBrewITs in BreweryAPI)
+        @foreach (JustBrewIt.BrewIT justBrewITs in Brewery)
         {
             <tbody>
                 <tr>

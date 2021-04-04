@@ -19,7 +19,7 @@ using System.Threading.Tasks;
 //
 //    var welcome = Welcome.FromJson(jsonString);
 
-namespace JustBrewItQuickType
+namespace JustBrewIt
 {
     using System;
     using System.Collections.Generic;
@@ -28,7 +28,7 @@ namespace JustBrewItQuickType
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
 
-    public partial class JustBrewIT
+    public partial class BrewIT
     {
         [JsonProperty("id", NullValueHandling = NullValueHandling.Ignore)]
         public long? Id { get; set; }
@@ -82,19 +82,19 @@ namespace JustBrewItQuickType
         public DateTimeOffset? CreatedAt { get; set; }
     }
 
-    public partial class JustBrewIT
+    public partial class BrewIT
     {
-        public static JustBrewIT[] FromJson(string json)
+        public static BrewIT[] FromJson(string json)
         {
-            return JsonConvert.DeserializeObject<JustBrewIT[]>(json, JustBrewItQuickType.Converter.Settings);
+            return JsonConvert.DeserializeObject<BrewIT[]>(json, JustBrewIt.Converter.Settings);
         }
     }
 
     public static class Serialize
     {
-        public static string ToJson(this JustBrewIT[] self)
+        public static string ToJson(this BrewIT[] self)
         {
-            return JsonConvert.SerializeObject(self, JustBrewItQuickType.Converter.Settings);
+            return JsonConvert.SerializeObject(self, JustBrewIt.Converter.Settings);
         }
     }
 
