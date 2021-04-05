@@ -1,17 +1,18 @@
 ﻿@page
 @model JustBrewIt.Pages.SearchModel
 @{
+    ViewData["Title"] = "Search";
     var BreweryAPI = (JustBrewItQuickType.Welcome[])ViewData["BreweryAPI"];
 }
 
 <form action="" method="POST" style="margin-top: 50px;">
     <div class="form-group">
-        <label class="control-label" for="BreweryCity">Search Brewries by City</label>
+        <label class="control-label" for="BreweryCity">Search Breweries by City in Ohio</label>
         <input type="text" class="form-control" name="BreweryCity" id="BreweryCity" />
     </div>
 
     <div class="form-group">
-        <label class="control-label" for="BreweryType">Search Brewries by Type</label>
+        <label class="control-label" for="BreweryType">Search Breweries in Ohio by Type</label>
         <select class="form-control" name="BreweryType" id="BreweryType">
             <option value=""></option>
             <option value="micro">Micro</option>
@@ -30,34 +31,44 @@
         <input type="submit" value="Search" class="btn btn-sm btn-primary" />
     </div>
 </form>
-@{ if (Model.isSearchCity || Model.isSearchType)
+@{ if (Model.IsSearchEmpty)
     {
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Brewery Type</th>
-                    <th scope="col">Phone</th>
-                    <th scope="col">Latitude</th>
-                    <th scope="col">Longitude</th>
-                    <th></th>
-                </tr>
-        </thead>
-        @foreach (JustBrewItQuickType.Welcome welcome in BreweryAPI)
-        {
-            <tbody>
-                <tr>
-                    <td>@welcome.Name</td>
-                    <td>@welcome.BreweryType</td>
-                    <td>@welcome.Phone</td>
-                    <td>@welcome.Latitude</td>
-                    <td>@welcome.Longitude</td>
-                </tr>
-            </tbody>
-
+        <div class="row alert alert-warning">
+            Enter atleast one field to begin search!
+        </div>
+    }
+    else if (Model.IsSearchCity || Model.IsSearchType)
+    {
+        if (Model.IsSearchValid == true)
+        { <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Brewery Type</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Latitude</th>
+                        <th scope="col">Longitude</th>
+                    </tr>
+                </thead>
+                @foreach (JustBrewItQuickType.Welcome welcome in BreweryAPI)
+                {
+                    <tbody>
+                        <tr>
+                            <td>@welcome.Name</td>
+                            <td>@welcome.BreweryType</td>
+                            <td>@welcome.Phone</td>
+                            <td>@welcome.Latitude</td>
+                            <td>@welcome.Longitude</td>
+                        </tr>
+                    </tbody>
+                }
+            </table>
         }
-        </table>
-
-            }
+        else
+        {
+            <div class="row alert alert-warning">
+                No Data present for this search. Please try again with different data
+            </div>
+        }
+    }
 }
-

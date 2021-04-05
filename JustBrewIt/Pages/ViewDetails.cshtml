@@ -1,9 +1,9 @@
 ﻿@page
 @model JustBrewIt.Pages.ViewDetailsModel
 @{
-List<JustBrewItGoogle.Candidate>
-GoogleReco = (List<JustBrewItGoogle.Candidate>
-)ViewData["Candidates"];
+    ViewData["Title"] = "Details";
+    List<JustBrewItGoogle.Candidate>
+    GoogleReco = (List<JustBrewItGoogle.Candidate>)ViewData["Candidates"];
 }
 
 <table class="table table-bordered">
@@ -18,13 +18,13 @@ GoogleReco = (List<JustBrewItGoogle.Candidate>
     </thead>
     @foreach (var x in GoogleReco)
     {
-<tbody>
-    <tr>
-        <td>@x.Name</td>
-        <td>@x.FormattedAddress</td>
-        <td>@x.BusinessStatus</td>
-        <td>@x.PriceLevel</td>
-        <td>@x.Rating</td>
-    </tr>
-</tbody>}
+    <tbody>
+        <tr>
+            <td>@x.Name</td>
+            <td>@x.FormattedAddress</td>
+            <td>@x.BusinessStatus</td>
+            <td>@x.PriceLevel</td>
+            <td>@x.Rating</td>
+        </tr>
+    </tbody>}
 </table>
