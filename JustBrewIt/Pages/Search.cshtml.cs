@@ -16,44 +16,41 @@ namespace JustBrewIt.Pages
         public string BreweryType { get; set; }
         [BindProperty]
         public string BreweryCity { get; set; }
-        public bool isSearchCity { get; set; }
+        public bool isSearchCity = false;
 
-        public bool isSearchType { get; set; }
+        public bool isSearchType = false;
         public string Url { get; set; }
-
-        public void OnGet()
-        {
-            isSearchCity = false;
-            isSearchType = false;
-        }
+        public string Error;
         
         public void OnPost()
         {
             string city = BreweryCity;
             string type = BreweryType;
-
-           if(city == null && type != null) { 
-
-            Url = "https://api.openbrewerydb.org/breweries?by_state=ohio&by_type=" + BreweryType;
-           }
-           else if(city != null && type != null)
+            Url = "https://api.openbrewerydb.org/breweries?by_city=" + city;
+            if (String.IsNullOrEmpty(city) && !String.IsNullOrEmpty(type)) {
+                Url = "https://api.openbrewerydb.org/breweries?by_state=ohio&by_type=" + BreweryType;
+            }
+            else if(!String.IsNullOrEmpty(city) && !String.IsNullOrEmpty(city))
             {
                 Url = "https://api.openbrewerydb.org/breweries?by_type=" + type + "&by_city=" + city;
-            }
-            else
-            {
-                Url = "https://api.openbrewerydb.org/breweries?by_city=" + city;
             }
             
             using (var webClient = new WebClient())
             {
-                string jsonString = webClient.DownloadString(Url);
-                Welcome[] welcome = Welcome.FromJson(jsonString);
-                ViewData["BreweryAPI"] = welcome;
+                try
+                {
+                    string breweriesResponseString = webClient.DownloadString(Url);
+                    Welcome[] welcome = Welcome.FromJson(breweriesResponseString);
+                    ViewData["BreweryAPI"] = welcome;
+                } 
+                catch (Exception ex)
+                {
+                    Error = "Something went wrong! Unable to retrieve list of breweries.";
+                    Console.WriteLine(ex.Message);
+                }
             }
 
-            isSearchType = true;
-            isSearchCity = true;
+            isSearchType = isSearchCity = true;
         }
     }
 }

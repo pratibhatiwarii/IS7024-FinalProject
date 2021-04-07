@@ -14,27 +14,37 @@ namespace JustBrewIt.Pages
     {
         public GoogleRecords GoogleAPI { get; set; }
         public string Url { get; set; }
+
+        public string Error;
         public void OnGet()
         {
             using (var webClient = new WebClient())
             {
-                string key = System.IO.File.ReadAllText("GoogleAPIKey.txt");
-                string fields = "&fields=business_status,formatted_address,geometry,icon,name,photos,place_id,plus_code,types,price_level,rating,user_ratings_total&key=";
-                string api = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=";
-                string input = "Mad Tree Brewing";
-                string inputType = "&inputtype=textquery";
-                Url = api + input + inputType + fields + key;
-                string jsonString = webClient.DownloadString(Url);
-                JObject jsonObject = JObject.Parse(jsonString);
-                GoogleRecords google = GoogleRecords.FromJson(jsonString);
-                List<Candidate> candidates = google.Candidates;
-                List<Candidate> newlist = new List<Candidate>();
-
-                foreach (var x in candidates)
+                try
                 {
-                    newlist.Add(x);
+                    string key = System.IO.File.ReadAllText("GoogleAPIKey.txt");
+                    string fields = "&fields=business_status,formatted_address,geometry,icon,name,photos,place_id,plus_code,types,price_level,rating,user_ratings_total&key=";
+                    string api = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=";
+                    string input = "Mad Tree Brewing";
+                    string inputType = "&inputtype=textquery";
+                    Url = api + input + inputType + fields + key;
+                    string placesAPIResponse = webClient.DownloadString(Url);
+                    JObject jsonObject = JObject.Parse(placesAPIResponse);
+                    GoogleRecords google = GoogleRecords.FromJson(placesAPIResponse);
+                    List<Candidate> candidates = google.Candidates;
+                    List<Candidate> newlist = new List<Candidate>();
+
+                    foreach (var x in candidates)
+                    {
+                        newlist.Add(x);
+                    }
+                    ViewData["Candidates"] = newlist;
                 }
-                ViewData["Candidates"] = newlist;
+                catch(Exception ex)
+                {
+                    Error = "Something went wrong! Unable to get places from Google";
+                    Console.WriteLine(ex.Message);
+                }
             }
         }
     }

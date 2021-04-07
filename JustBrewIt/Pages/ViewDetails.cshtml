@@ -6,25 +6,29 @@ GoogleReco = (List<JustBrewItGoogle.Candidate>
 )ViewData["Candidates"];
 }
 
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Address</th>
-            <th scope="col">Business Status</th>
-            <th scope="col">Price Level</th>
-            <th scope="col">Rating</th>
-        </tr>
-    </thead>
-    @foreach (var x in GoogleReco)
-    {
-<tbody>
-    <tr>
-        <td>@x.Name</td>
-        <td>@x.FormattedAddress</td>
-        <td>@x.BusinessStatus</td>
-        <td>@x.PriceLevel</td>
-        <td>@x.Rating</td>
-    </tr>
-</tbody>}
-</table>
+@if (GoogleReco.Any())
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Address</th>
+                <th scope="col">Business Status</th>
+                <th scope="col">Price Level</th>
+                <th scope="col">Rating</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var x in GoogleReco)
+        {
+            <tr>
+                <td>@x.Name</td>
+                <td>@x.FormattedAddress</td>
+                <td>@x.BusinessStatus</td>
+                <td>@x.PriceLevel</td>
+                <td>@x.Rating</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}

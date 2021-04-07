@@ -13,14 +13,22 @@ namespace JustBrewIt.Pages
     {
         public object MyBreweryAPI { get; set; }
 
+        public string Error;
         public void OnGet()
         {
-
             using (var webClient = new WebClient())
             {
-                string jsonString = webClient.DownloadString("https://api.openbrewerydb.org/breweries?by_city=cincinnati&brewery_type=regional");
-                Welcome[] welcome = Welcome.FromJson(jsonString);
-                ViewData["MyBreweryAPI"] = welcome;
+                try
+                {
+                    string breweryResponseString = webClient.DownloadString("https://api.openbrewerydb.org/breweries?by_city=cincinnati&brewery_type=regional");
+                    Welcome[] welcome = Welcome.FromJson(breweryResponseString);
+                    ViewData["MyBreweryAPI"] = welcome;
+                }
+                catch (Exception ex)
+                {
+                    Error = "Something went wrong! Unable to retrieve breweries in Cincinnati.";
+                    Console.WriteLine(ex.Message);
+                }
             }
         }
     }
