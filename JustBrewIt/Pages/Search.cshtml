@@ -30,8 +30,11 @@
         <input type="submit" value="Search" class="btn btn-sm btn-primary" />
     </div>
 </form>
-@{ if (Model.isSearchCity || Model.isSearchType)
+@{ 
+    if (BreweryAPI.Any())
     {
+        if (Model.isSearchCity || Model.isSearchType)
+        {
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -54,10 +57,13 @@
                     <td>@welcome.Longitude</td>
                 </tr>
             </tbody>
-
         }
         </table>
-
-            }
+        }
+    }
+    else
+    {
+        <div class="alert-danger">No results found</div>
+    }
 }
 
