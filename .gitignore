@@ -354,3 +354,8 @@ MigrationBackup/
 
 # My Google API Key
 GoogleAPIKey.txt
+
+
+
+#My Weather API Key
+WeatherAPIKey.txt
