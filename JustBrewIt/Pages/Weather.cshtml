@@ -1,0 +1,29 @@
+﻿@page
+@model JustBrewIt.Pages.WeatherModel
+@{
+    var BreweryAPI = (JustBrewItWeatherApi.Weather)ViewData["WeatherAPI"];
+}
+
+
+
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th scope="col">City Name</th>
+            <th scope="col">Temperature (in Celsius)</th>
+        </tr>
+    </thead>
+
+    @foreach (var weather_info in BreweryAPI.Data)
+    {
+        <tbody>
+            <tr>
+                <td>@weather_info.CityName</td>
+                <td>@weather_info.Temp</td>
+            </tr>
+        </tbody>
+    }
+
+</table>
+
