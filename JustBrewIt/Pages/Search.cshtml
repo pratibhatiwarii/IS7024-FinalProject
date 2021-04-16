@@ -67,7 +67,7 @@ else if (Model.IsSearchCity || Model.IsSearchType)
                         {
                             <td><a class="btn btn-sm btn-primary" href="@brewery.WebsiteUrl" target="_blank" role="button">@brewery.Name website </a></td>
                         }
-                        <td><a href="/ViewDetails?input=@brewery.Name&city=@brewery.City" target="_blank">More Details</a></td>
+                        <td><a href="/ViewDetails?input=@brewery.Name&city=@brewery.City&website=@brewery.WebsiteUrl" target="_blank">More Details</a></td>
                     </tr>
                 </tbody>
 
