@@ -6,34 +6,44 @@
 }
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<body>
+    @if (!Model.IsSearchCity || !Model.IsSearchType)
+    {
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4 text-center">Search For Breweries Anywhere In The USA</h1>
+            <p class="lead text-center">Connect with the brewery of your choice and plan your visit refering to the latest weather report</p>
+        </div>
+    </div>
+    }
+    <form action="" method="POST" style="margin-top: 50px;">
+        <div class="form-group">
+            <label class="control-label" for="BreweryCity">Search Brewries by City</label>
+            <input type="text" class="form-control" name="BreweryCity" id="BreweryCity" />
+        </div>
 
-<form action="" method="POST" style="margin-top: 50px;">
-    <div class="form-group">
-        <label class="control-label" for="BreweryCity">Search Brewries by City</label>
-        <input type="text" class="form-control" name="BreweryCity" id="BreweryCity" />
-    </div>
-
-    <div class="form-group">
-        <label class="control-label" for="BreweryType">Search Brewries by Type</label>
-        <select class="form-control" name="BreweryType" id="BreweryType">
-            <option value=""></option>
-            <option value="micro">Micro</option>
-            <option value="nano">Nano</option>
-            <option value="regional">Regional</option>
-            <option value="brewpub">Brewpub</option>
-            <option value="large">Large</option>
-            <option value="planning">Planning</option>
-            <option value="bar">Bar</option>
-            <option value="contract">Contract</option>
-            <option value="proprietor">Proprietor</option>
-            <option value="closed">Closed</option>
-        </select>
-    </div>
-    <div class="form-group">
-        <input type="submit" value="Search" class="btn btn-sm btn-primary" />
-    </div>
-</form>
-@if (Model.IsSearchEmpty)
+        <div class="form-group">
+            <label class="control-label" for="BreweryType">Search Brewries by Type</label>
+            <select class="form-control" name="BreweryType" id="BreweryType">
+                <option value=""></option>
+                <option value="micro">Micro</option>
+                <option value="nano">Nano</option>
+                <option value="regional">Regional</option>
+                <option value="brewpub">Brewpub</option>
+                <option value="large">Large</option>
+                <option value="planning">Planning</option>
+                <option value="bar">Bar</option>
+                <option value="contract">Contract</option>
+                <option value="proprietor">Proprietor</option>
+                <option value="closed">Closed</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Search" class="btn btn-sm btn-primary" />
+        </div>
+    </form>
+    @if (Model.IsSearchEmpty)
 {<div class="row alert alert-warning">
         Enter atleast one field to begin search!
     </div>
@@ -42,47 +52,48 @@ else if (Model.IsSearchCity || Model.IsSearchType)
 {
     if (Model.IsSearchValid == true)
     {
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Brewery Type</th>
-                    <th scope="col">Phone</th>
-                    <th scope="col">City</th>
-                    <th scope="col">Website</th>
-                    <th></th>
-                </tr>
-            </thead>
-            @foreach (JustBrewItType.BreweryAPI brewery in Breweries)
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Brewery Type</th>
+                <th scope="col">Phone</th>
+                <th scope="col">City</th>
+                <th scope="col">Website</th>
+                <th></th>
+            </tr>
+        </thead>
+        @foreach (JustBrewItType.BreweryAPI brewery in Breweries)
             {
-                <tbody>
-                    <tr>
-                        <td>@brewery.Name</td>
-                        <td>@brewery.BreweryType</td>
-                        <td>@brewery.Phone</td>
-                        <td>@brewery.City</td>
-                        @if (brewery.WebsiteUrl == null)
+        <tbody>
+            <tr>
+                <td>@brewery.Name</td>
+                <td>@brewery.BreweryType</td>
+                <td>@brewery.Phone</td>
+                <td>@brewery.City</td>
+                @if (brewery.WebsiteUrl == null)
                         {
-                            <td></td>
+                <td></td>
                         }
                         else
                         {
-                            <td><a class="btn btn-sm btn-primary" href="@brewery.WebsiteUrl" target="_blank" role="button">@brewery.Name website </a></td>
+                <td><a class="btn btn-link" href="@brewery.WebsiteUrl" target="_blank" role="button">@brewery.Name website </a></td>
                         }
-                        <td><a href="/ViewDetails?input=@brewery.Name&city=@brewery.City&website=@brewery.WebsiteUrl" target="_blank">More Details</a></td>
-                    </tr>
-                </tbody>
+                <td><a class="btn btn-sm btn-outline-primary" href="/ViewDetails?input=@brewery.Name&city=@brewery.City&website=@brewery.WebsiteUrl" target="_blank">More Details</a></td>
+            </tr>
+        </tbody>
 
             }
-        </table>
+    </table>
     }
     else
     {
-        <div class="row alert alert-warning">
-            No Data present for this search. Please try again with different data
-        </div>
+    <div class="row alert alert-warning">
+        No Data present for this search. Please try again with different data
+    </div>
     }
 
 }
 
-
+</body>
+</html>

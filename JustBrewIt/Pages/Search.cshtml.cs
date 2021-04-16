@@ -17,7 +17,6 @@ namespace JustBrewIt.Pages
         {
             _configuration = configuration;
         }
-        public object BreweryAPI { get; private set; }
         [BindProperty]
         public string BreweryType { get; set; }
         [BindProperty]
