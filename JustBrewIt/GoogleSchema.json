@@ -1,8 +1,8 @@
 ﻿{
   "$schema": "http://json-schema.org/draft-06/schema#",
-  "$ref": "#/definitions/GoogleSchema",
+  "$ref": "#/definitions/WeatherShareAPI",
   "definitions": {
-    "GoogleSchema": {
+    "WeatherShareAPI": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
@@ -17,7 +17,7 @@
         }
       },
       "required": [],
-      "title": "GoogleSchema"
+      "title": "WeatherShareAPI"
     },
     "Candidate": {
       "type": "object",
@@ -28,9 +28,6 @@
         },
         "formatted_address": {
           "type": "string"
-        },
-        "geometry": {
-          "$ref": "#/definitions/Geometry"
         },
         "icon": {
           "type": "string",
@@ -45,26 +42,11 @@
         "name": {
           "type": "string"
         },
-        "photos": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Photo"
-          }
-        },
-        "place_id": {
-          "type": "string"
-        },
-        "plus_code": {
-          "$ref": "#/definitions/PlusCode"
+        "price_level": {
+          "type": "integer"
         },
         "rating": {
           "type": "number"
-        },
-        "types": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
         },
         "user_ratings_total": {
           "type": "integer"
@@ -72,85 +54,6 @@
       },
       "required": [],
       "title": "Candidate"
-    },
-    "Geometry": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "location": {
-          "$ref": "#/definitions/Location"
-        },
-        "viewport": {
-          "$ref": "#/definitions/Viewport"
-        }
-      },
-      "required": [],
-      "title": "Geometry"
-    },
-    "Location": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "lat": {
-          "type": "number"
-        },
-        "lng": {
-          "type": "number"
-        }
-      },
-      "required": [],
-      "title": "Location"
-    },
-    "Viewport": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "northeast": {
-          "$ref": "#/definitions/Location"
-        },
-        "southwest": {
-          "$ref": "#/definitions/Location"
-        }
-      },
-      "required": [],
-      "title": "Viewport"
-    },
-    "Photo": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "height": {
-          "type": "integer"
-        },
-        "html_attributions": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "photo_reference": {
-          "type": "string"
-        },
-        "width": {
-          "type": "integer"
-        }
-      },
-      "required": [],
-      "title": "Photo"
-    },
-    "PlusCode": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "compound_code": {
-          "type": "string"
-        },
-        "global_code": {
-          "type": "string"
-        }
-      },
-      "required": [],
-      "title": "PlusCode"
     }
   }
 }

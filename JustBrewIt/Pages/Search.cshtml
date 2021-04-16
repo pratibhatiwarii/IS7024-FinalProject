@@ -46,8 +46,8 @@ else if (Model.IsSearchCity || Model.IsSearchType)
                     <th scope="col">Name</th>
                     <th scope="col">Brewery Type</th>
                     <th scope="col">Phone</th>
-                    <th scope="col">Latitude</th>
-                    <th scope="col">Longitude</th>
+                    <th scope="col">City</th>
+                    <th scope="col">Website</th>
                     <th></th>
                 </tr>
             </thead>
@@ -58,9 +58,16 @@ else if (Model.IsSearchCity || Model.IsSearchType)
                         <td>@brewery.Name</td>
                         <td>@brewery.BreweryType</td>
                         <td>@brewery.Phone</td>
-                        <td>@brewery.Latitude</td>
-                        <td>@brewery.Longitude</td>
-                        <td><a href="/ViewDetails?input=@brewery.Name.">More Details</a></td>
+                        <td>@brewery.City</td>
+                        @if(brewery.WebsiteUrl == null)
+                        {
+                            <td></td>
+                        }
+                        else
+                        {
+                            <td><a class="btn btn-sm btn-primary" href="@brewery.WebsiteUrl" target="_blank" role="button">@brewery.Name website </a></td>
+                        }
+                        <td><a href="/ViewDetails?input=@brewery.Name&city=@brewery.City" target="_blank">More Details</a></td>
                     </tr>
                 </tbody>
 

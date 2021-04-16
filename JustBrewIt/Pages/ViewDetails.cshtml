@@ -2,37 +2,68 @@
 @model JustBrewIt.Pages.ViewDetailsModel
 @{
     List<JustBrewItGoogle.Candidate>
-    Records = (List<JustBrewItGoogle.Candidate>)ViewData["Records"];
-
-
-
+    GoogleRecords = (List<JustBrewItGoogle.Candidate>)ViewData["GoogleRecords"];
+    List<WeatherAPI.Datum>
+    WeatherRecords = (List<WeatherAPI.Datum>)ViewData["WeatherRecords"];
+    string url = " ";
 }
 <html>
 <body>
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Address</th>
-                <th scope="col">Business Status</th>
-                <th scope="col">Price Level</th>
-                <th scope="col">Rating</th>
-
-            </tr>
-        </thead>
-
-        @foreach (var record in Records)
-        {
-            <tbody>
+    @if (Model.IsSearchValid == true)
+    {
+        <table class="table table-bordered">
+            <thead>
                 <tr>
-                    <td>@record.Name</td>
-                    <td>@record.FormattedAddress</td>
-                    <td>@record.BusinessStatus</td>
-                    <td>@record.PriceLevel</td>
-                    <td>@record.Rating</td>
+                    <th scope="col">Name</th>
+                    <th scope="col">Icon</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Business Status</th>
+                    <th scope="col">Rating</th>
+                    <th scope="col">Temperature in Celcius</th>
+                    <th scope="col">Aqi</th>
+                    <th scope="col">Weather Outside</th>
                 </tr>
-            </tbody>
-        }
-    </table>
+            </thead>
+
+            @foreach (var record in GoogleRecords)
+            {
+                <tbody>
+                    <tr>
+                        <td>@record.Name</td>
+                        <td><img class="mx-auto align-self-sm-auto" src="@record.Icon" alt="icon"></td>
+                        <td>@record.FormattedAddress</td>
+                        <td>@record.BusinessStatus</td>
+                        <td>@record.Rating</td>
+                        @foreach (var temp in WeatherRecords)
+                        {
+                            url = "https://www.weatherbit.io/static/img/icons/" + temp.Weather.Icon +".png";
+                            <td>@temp.Temp</td>
+                            if (temp.Aqi >= 0 && temp.Aqi <= 50)
+                            {
+                                <td class="bg-success"> Good </td>
+                            }
+                            if (temp.Aqi >= 51 && temp.Aqi <= 100)
+                            {
+                                <td class="bg-success"> Moderate </td>
+                            }
+                            if (temp.Aqi > 100 )
+                            {
+                                <td class="bg-success"> Poor </td>
+                            }
+                            
+                            <td><img class="mx-auto align-self-sm-auto" src="@url" alt="icon"></td>
+                        }
+
+                    </tr>
+                </tbody>
+            }
+        </table>
+    }
+    else
+    {
+        <h3 class="alert-danger">No data Found</h3>
+        <a href="/Search">GO BACK</a>
+    }
+
 </body>
 </html>

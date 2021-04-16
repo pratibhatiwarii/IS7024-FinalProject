@@ -70,7 +70,6 @@ namespace JustBrewIt.Pages
                             ViewData["Breweries"] = breweries;
                         else
                             IsSearchValid = false;
-
                     }
 
                     IsSearchType = true;

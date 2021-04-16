@@ -1,11 +1,9 @@
 ﻿@page
 @model JustBrewIt.Pages.WeatherModel
 @{
-    var weather = (WeatherAPI.Weather)ViewData["WeatherAPI"];
+    List<WeatherAPI.Datum>
+    Records = (List<WeatherAPI.Datum>)ViewData["Records"];
 }
-
-
-
 
 <table class="table table-bordered">
     <thead>
@@ -15,12 +13,12 @@
         </tr>
     </thead>
 
-    @foreach (var weather_info in weather.Data)
+    @foreach (var record in Records)
     {
         <tbody>
             <tr>
-                <td>@weather_info.CityName</td>
-                <td>@weather_info.Temp</td>
+                <td>@record.CityName</td>
+                <td>@record.Temp</td>
             </tr>
         </tbody>
     }
