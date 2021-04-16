@@ -15,11 +15,11 @@ using System.Threading.Tasks;
 //
 // To parse this JSON data, add NuGet 'Newtonsoft.Json' then do:
 //
-//    using JustBrewItQuickType;
+//    using JustBrewItType;
 //
 //    var welcome = Welcome.FromJson(jsonString);
 
-namespace JustBrewItQuickType
+namespace JustBrewItType
 {
     using System;
     using System.Collections.Generic;
@@ -28,7 +28,7 @@ namespace JustBrewItQuickType
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
 
-    public partial class Welcome
+    public partial class BreweryAPI
     {
         [JsonProperty("id", NullValueHandling = NullValueHandling.Ignore)]
         public long? Id { get; set; }
@@ -82,19 +82,19 @@ namespace JustBrewItQuickType
         public DateTimeOffset? CreatedAt { get; set; }
     }
 
-    public partial class Welcome
+    public partial class BreweryAPI
     {
-        public static Welcome[] FromJson(string json)
+        public static BreweryAPI[] FromJson(string json)
         {
-            return JsonConvert.DeserializeObject<Welcome[]>(json, JustBrewItQuickType.Converter.Settings);
+            return JsonConvert.DeserializeObject<BreweryAPI[]>(json, JustBrewItType.Converter.Settings);
         }
     }
 
     public static class Serialize
     {
-        public static string ToJson(this Welcome[] self)
+        public static string ToJson(this BreweryAPI[] self)
         {
-            return JsonConvert.SerializeObject(self, JustBrewItQuickType.Converter.Settings);
+            return JsonConvert.SerializeObject(self, JustBrewItType.Converter.Settings);
         }
     }
 

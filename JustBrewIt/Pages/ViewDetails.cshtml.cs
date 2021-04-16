@@ -7,34 +7,57 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using JustBrewItGoogle;
 using Newtonsoft.Json.Linq;
+using static Microsoft.AspNetCore.Http.HttpRequest;
+using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json.Schema;
 
 namespace JustBrewIt.Pages
 {
     public class ViewDetailsModel : PageModel
     {
+        private readonly IConfiguration _configuration;
+        public ViewDetailsModel(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
         public GoogleRecords GoogleAPI { get; set; }
         public string Url { get; set; }
+       // public string Name = { get; set;  }
         public void OnGet()
         {
             using (var webClient = new WebClient())
             {
+                var googleBaseUri = _configuration["GoogleBaseUri"];
+                string input = Request.Query["input"];
                 string key = System.IO.File.ReadAllText("GoogleAPIKey.txt");
                 string fields = "&fields=business_status,formatted_address,geometry,icon,name,photos,place_id,plus_code,types,price_level,rating,user_ratings_total&key=";
-                string api = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=";
-                string input = "Mad Tree Brewing";
+                // string input = "Mad Tree Brewing";
                 string inputType = "&inputtype=textquery";
-                Url = api + input + inputType + fields + key;
-                string jsonString = webClient.DownloadString(Url);
-                JObject jsonObject = JObject.Parse(jsonString);
-                GoogleRecords google = GoogleRecords.FromJson(jsonString);
-                List<Candidate> candidates = google.Candidates;
-                List<Candidate> newlist = new List<Candidate>();
-
-                foreach (var x in candidates)
+                Url = googleBaseUri + input + inputType + fields + key;
+                string googleString = webClient.DownloadString(Url);
+                JSchema googleSchema = JSchema.Parse(System.IO.File.ReadAllText("GoogleSchema.json"));
+                IList<string> validationEvents = new List<string>();
+                JObject googleObject = JObject.Parse(googleString);
+                if (googleObject.IsValid(googleSchema, out validationEvents))
                 {
-                    newlist.Add(x);
+                    GoogleRecords google = GoogleRecords.FromJson(googleString);
+                    List<Candidate> candidates = google.Candidates;
+                    List<Candidate> recordList = new List<Candidate>();
+
+                    foreach (var record in candidates)
+                    {
+                        recordList.Add(record);
+                    }
+                    ViewData["Records"] = recordList;
                 }
-                ViewData["Candidates"] = newlist;
+                else
+                {
+                    foreach(string invalidEvent in validationEvents)
+                    {
+                        Console.WriteLine(invalidEvent);
+                    }
+                    ViewData["Records"] = new List<Candidate>();
+                }
             }
         }
     }

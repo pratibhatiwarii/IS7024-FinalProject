@@ -1,7 +1,8 @@
 ﻿@page
 @model JustBrewIt.Pages.SearchModel
 @{
-    var BreweryAPI = (JustBrewItQuickType.Welcome[])ViewData["BreweryAPI"];
+    var Breweries = (JustBrewItType.BreweryAPI[])ViewData["Breweries"];
+    ViewData["Title"] = "Search Brewery";
 }
 
 <form action="" method="POST" style="margin-top: 50px;">
@@ -30,7 +31,14 @@
         <input type="submit" value="Search" class="btn btn-sm btn-primary" />
     </div>
 </form>
-@{ if (Model.isSearchCity || Model.isSearchType)
+@if (Model.IsSearchEmpty)
+{<div class="row alert alert-warning">
+        Enter atleast one field to begin search!
+    </div>
+}
+else if (Model.IsSearchCity || Model.IsSearchType)
+{
+    if (Model.IsSearchValid == true)
     {
         <table class="table table-bordered">
             <thead>
@@ -42,22 +50,30 @@
                     <th scope="col">Longitude</th>
                     <th></th>
                 </tr>
-        </thead>
-        @foreach (JustBrewItQuickType.Welcome welcome in BreweryAPI)
-        {
-            <tbody>
-                <tr>
-                    <td>@welcome.Name</td>
-                    <td>@welcome.BreweryType</td>
-                    <td>@welcome.Phone</td>
-                    <td>@welcome.Latitude</td>
-                    <td>@welcome.Longitude</td>
-                </tr>
-            </tbody>
-
-        }
-        </table>
+            </thead>
+            @foreach (JustBrewItType.BreweryAPI brewery in Breweries)
+            {
+                <tbody>
+                    <tr>
+                        <td>@brewery.Name</td>
+                        <td>@brewery.BreweryType</td>
+                        <td>@brewery.Phone</td>
+                        <td>@brewery.Latitude</td>
+                        <td>@brewery.Longitude</td>
+                        <td><a href="/ViewDetails?input=@brewery.Name.">More Details</a></td>
+                    </tr>
+                </tbody>
 
             }
+        </table>
+    }
+    else
+    {
+        <div class="row alert alert-warning">
+            No Data present for this search. Please try again with different data
+        </div>
+    }
+
 }
+
 
