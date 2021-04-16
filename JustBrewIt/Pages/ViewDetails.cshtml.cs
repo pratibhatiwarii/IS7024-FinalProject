@@ -31,6 +31,7 @@ namespace JustBrewIt.Pages
                 var googleBaseUri = _configuration["GoogleBaseUri"];
                 string input = Request.Query["input"];
                 string city = Request.Query["city"];
+                string website = Request.Query["website"];
                 string weatherString = webClient.DownloadString("https://api.weatherbit.io/v2.0/current?city=" + city + "&key=ccda8d9e0748480f8dfebed5538fae9d");
                 WeatherAPI.Weather weatherDetails = WeatherAPI.Weather.FromJson(weatherString);
                 List<Datum> cityData = weatherDetails.Data;
@@ -52,7 +53,7 @@ namespace JustBrewIt.Pages
                 if (googleObject.IsValid(googleSchema, out validationEvents))
                 {
                     GoogleRecords google = GoogleRecords.FromJson(googleString);
-                    if(google != null)
+                    if(google.Candidates.Count != 0)
                     {
                         List<Candidate> candidates = google.Candidates;
                         List<Candidate> recordList = new List<Candidate>();
@@ -62,10 +63,12 @@ namespace JustBrewIt.Pages
                             recordList.Add(record);
                         }
                         ViewData["GoogleRecords"] = recordList;
+                        
                     }
                     else
                     {
                         IsSearchValid = false;
+                        ViewData["Website"] = website;
                     }
                     
                 }
@@ -77,6 +80,7 @@ namespace JustBrewIt.Pages
                     }
                     ViewData["GoogleRecords"] = new List<Candidate>();
                     IsSearchValid = false;
+                    ViewData["Website"] = website;
                 }
             }
         }
