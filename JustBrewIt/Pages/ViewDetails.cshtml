@@ -7,6 +7,8 @@
     WeatherRecords = (List<WeatherAPI.Datum>)ViewData["WeatherRecords"];
     string url = " ";
 }
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
 <body>
     @if (Model.IsSearchValid == true)
@@ -30,13 +32,13 @@
                 <tbody>
                     <tr>
                         <td>@record.Name</td>
-                        <td><img class="mx-auto align-self-sm-auto" src="@record.Icon" alt="icon"></td>
+                        <td><img class="mx-auto align-self-sm-auto" src="@record.Icon" alt="icon" /></td>
                         <td>@record.FormattedAddress</td>
                         <td>@record.BusinessStatus</td>
                         <td>@record.Rating</td>
                         @foreach (var temp in WeatherRecords)
                         {
-                            url = "https://www.weatherbit.io/static/img/icons/" + temp.Weather.Icon +".png";
+                            url = "https://www.weatherbit.io/static/img/icons/" + temp.Weather.Icon + ".png";
                             <td>@temp.Temp</td>
                             if (temp.Aqi >= 0 && temp.Aqi <= 50)
                             {
@@ -46,12 +48,12 @@
                             {
                                 <td class="bg-success"> Moderate </td>
                             }
-                            if (temp.Aqi > 100 )
+                            if (temp.Aqi > 100)
                             {
                                 <td class="bg-success"> Poor </td>
                             }
-                            
-                            <td><img class="mx-auto align-self-sm-auto" src="@url" alt="icon"></td>
+
+                            <td><img class="mx-auto align-self-sm-auto" src="@url" alt="icon" /></td>
                         }
 
                     </tr>
