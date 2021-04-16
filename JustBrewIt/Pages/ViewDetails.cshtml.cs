@@ -31,8 +31,10 @@ namespace JustBrewIt.Pages
                 var googleBaseUri = _configuration["GoogleBaseUri"];
                 string input = Request.Query["input"];
                 string city = Request.Query["city"];
-                string website = Request.Query["website"];
-                string weatherString = webClient.DownloadString("https://api.weatherbit.io/v2.0/current?city=" + city + "&key=ccda8d9e0748480f8dfebed5538fae9d");
+
+                //Consuming the Weather API from World Heritage Group
+
+                string weatherString = webClient.DownloadString("https://worldheritage2021.azurewebsites.net/WeatherShare?city=" + city);
                 WeatherAPI.Weather weatherDetails = WeatherAPI.Weather.FromJson(weatherString);
                 List<Datum> cityData = weatherDetails.Data;
                 List<Datum> cityList = new List<Datum>();
@@ -41,19 +43,22 @@ namespace JustBrewIt.Pages
                     cityList.Add(record);
                 }
                 ViewData["WeatherRecords"] = cityList;
+
+                //Consuming the Google Places API
                 string key = System.IO.File.ReadAllText("GoogleAPIKey.txt");
                 string fields = "&fields=business_status,formatted_address,icon,name,price_level,rating,user_ratings_total&key=";
-                // string input = "Mad Tree Brewing";
                 string inputType = "&inputtype=textquery";
                 Url = googleBaseUri + input + inputType + fields + key;
                 string googleString = webClient.DownloadString(Url);
+
+                //Schema Validation for the Google Places API
                 JSchema googleSchema = JSchema.Parse(System.IO.File.ReadAllText("GoogleSchema.json"));
                 IList<string> validationEvents = new List<string>();
                 JObject googleObject = JObject.Parse(googleString);
                 if (googleObject.IsValid(googleSchema, out validationEvents))
                 {
                     GoogleRecords google = GoogleRecords.FromJson(googleString);
-                    if(google.Candidates.Count != 0)
+                    if(google.Candidates.Count != 0) //Code below works when the output object is not empty
                     {
                         List<Candidate> candidates = google.Candidates;
                         List<Candidate> recordList = new List<Candidate>();
@@ -68,7 +73,6 @@ namespace JustBrewIt.Pages
                     else
                     {
                         IsSearchValid = false;
-                        ViewData["Website"] = website;
                     }
                     
                 }
@@ -80,7 +84,6 @@ namespace JustBrewIt.Pages
                     }
                     ViewData["GoogleRecords"] = new List<Candidate>();
                     IsSearchValid = false;
-                    ViewData["Website"] = website;
                 }
             }
         }
