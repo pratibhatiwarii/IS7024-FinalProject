@@ -21,7 +21,7 @@ namespace JustBrewIt.Pages
             _configuration = configuration;
         }
         public GoogleRecords GoogleAPI { get; set; }
-        public string Url { get; set; }
+        public new string Url { get; set; }
        // public string Name = { get; set;  }
         public void OnGet()
         {

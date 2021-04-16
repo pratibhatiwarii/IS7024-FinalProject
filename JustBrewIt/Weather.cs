@@ -2,11 +2,11 @@
 //
 // To parse this JSON data, add NuGet 'Newtonsoft.Json' then do:
 //
-//    using JustBrewItWeatherApi;
+//    using WeatherAPI;
 //
 //    var weather = Weather.FromJson(jsonString);
 
-namespace JustBrewItWeatherApi
+namespace WeatherAPI
 {
     using System;
     using System.Collections.Generic;
@@ -17,145 +17,144 @@ namespace JustBrewItWeatherApi
 
     public partial class Weather
     {
-        [JsonProperty("data", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("data")]
         public Datum[] Data { get; set; }
 
-        [JsonProperty("count", NullValueHandling = NullValueHandling.Ignore)]
-        public long? Count { get; set; }
+        [JsonProperty("count")]
+        public long Count { get; set; }
     }
 
     public partial class Datum
     {
-        [JsonProperty("rh", NullValueHandling = NullValueHandling.Ignore)]
-        public double? Rh { get; set; }
+        [JsonProperty("rh")]
+        public long Rh { get; set; }
 
-        [JsonProperty("pod", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("pod")]
         public string Pod { get; set; }
 
-        [JsonProperty("lon", NullValueHandling = NullValueHandling.Ignore)]
-        public double? Lon { get; set; }
+        [JsonProperty("lon")]
+        public double Lon { get; set; }
 
-        [JsonProperty("pres", NullValueHandling = NullValueHandling.Ignore)]
-        public long? Pres { get; set; }
+        [JsonProperty("pres")]
+        public double Pres { get; set; }
 
-        [JsonProperty("timezone", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("timezone")]
         public string Timezone { get; set; }
 
-        [JsonProperty("ob_time", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("ob_time")]
         public string ObTime { get; set; }
 
-        [JsonProperty("country_code", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("country_code")]
         public string CountryCode { get; set; }
 
-        [JsonProperty("clouds", NullValueHandling = NullValueHandling.Ignore)]
-        public long? Clouds { get; set; }
+        [JsonProperty("clouds")]
+        public long Clouds { get; set; }
 
-        [JsonProperty("ts", NullValueHandling = NullValueHandling.Ignore)]
-        public long? Ts { get; set; }
+        [JsonProperty("ts")]
+        public long Ts { get; set; }
 
-        [JsonProperty("solar_rad", NullValueHandling = NullValueHandling.Ignore)]
-        public double? SolarRad { get; set; }
+        [JsonProperty("solar_rad")]
+        public long SolarRad { get; set; }
 
-        [JsonProperty("state_code", NullValueHandling = NullValueHandling.Ignore)]
-        [JsonConverter(typeof(ParseStringConverter))]
-        public long? StateCode { get; set; }
+        [JsonProperty("state_code")]
+        public string StateCode { get; set; }
 
-        [JsonProperty("city_name", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("city_name")]
         public string CityName { get; set; }
 
-        [JsonProperty("wind_spd", NullValueHandling = NullValueHandling.Ignore)]
-        public double? WindSpd { get; set; }
+        [JsonProperty("wind_spd")]
+        public double WindSpd { get; set; }
 
-        [JsonProperty("wind_cdir_full", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("wind_cdir_full")]
         public string WindCdirFull { get; set; }
 
-        [JsonProperty("wind_cdir", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("wind_cdir")]
         public string WindCdir { get; set; }
 
-        [JsonProperty("slp", NullValueHandling = NullValueHandling.Ignore)]
-        public long? Slp { get; set; }
+        [JsonProperty("slp")]
+        public double Slp { get; set; }
 
-        [JsonProperty("vis", NullValueHandling = NullValueHandling.Ignore)]
-        public long? Vis { get; set; }
+        [JsonProperty("vis")]
+        public long Vis { get; set; }
 
-        [JsonProperty("h_angle", NullValueHandling = NullValueHandling.Ignore)]
-        public double? HAngle { get; set; }
+        [JsonProperty("h_angle")]
+        public long HAngle { get; set; }
 
-        [JsonProperty("sunset", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("sunset")]
         public string Sunset { get; set; }
 
-        [JsonProperty("dni", NullValueHandling = NullValueHandling.Ignore)]
-        public double? Dni { get; set; }
+        [JsonProperty("dni")]
+        public long Dni { get; set; }
 
-        [JsonProperty("dewpt", NullValueHandling = NullValueHandling.Ignore)]
-        public double? Dewpt { get; set; }
+        [JsonProperty("dewpt")]
+        public double Dewpt { get; set; }
 
-        [JsonProperty("snow", NullValueHandling = NullValueHandling.Ignore)]
-        public long? Snow { get; set; }
+        [JsonProperty("snow")]
+        public long Snow { get; set; }
 
-        [JsonProperty("uv", NullValueHandling = NullValueHandling.Ignore)]
-        public double? Uv { get; set; }
+        [JsonProperty("uv")]
+        public long Uv { get; set; }
 
-        [JsonProperty("precip", NullValueHandling = NullValueHandling.Ignore)]
-        public long? Precip { get; set; }
+        [JsonProperty("precip")]
+        public long Precip { get; set; }
 
-        [JsonProperty("wind_dir", NullValueHandling = NullValueHandling.Ignore)]
-        public long? WindDir { get; set; }
+        [JsonProperty("wind_dir")]
+        public long WindDir { get; set; }
 
-        [JsonProperty("sunrise", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("sunrise")]
         public string Sunrise { get; set; }
 
-        [JsonProperty("ghi", NullValueHandling = NullValueHandling.Ignore)]
-        public double? Ghi { get; set; }
+        [JsonProperty("ghi")]
+        public long Ghi { get; set; }
 
-        [JsonProperty("dhi", NullValueHandling = NullValueHandling.Ignore)]
-        public double? Dhi { get; set; }
+        [JsonProperty("dhi")]
+        public long Dhi { get; set; }
 
-        [JsonProperty("aqi", NullValueHandling = NullValueHandling.Ignore)]
-        public long? Aqi { get; set; }
+        [JsonProperty("aqi")]
+        public long Aqi { get; set; }
 
-        [JsonProperty("lat", NullValueHandling = NullValueHandling.Ignore)]
-        public double? Lat { get; set; }
+        [JsonProperty("lat")]
+        public double Lat { get; set; }
 
-        [JsonProperty("weather", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("weather")]
         public WeatherClass Weather { get; set; }
 
-        [JsonProperty("datetime", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("datetime")]
         public string Datetime { get; set; }
 
-        [JsonProperty("temp", NullValueHandling = NullValueHandling.Ignore)]
-        public double? Temp { get; set; }
+        [JsonProperty("temp")]
+        public double Temp { get; set; }
 
-        [JsonProperty("station", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("station")]
         public string Station { get; set; }
 
-        [JsonProperty("elev_angle", NullValueHandling = NullValueHandling.Ignore)]
-        public double? ElevAngle { get; set; }
+        [JsonProperty("elev_angle")]
+        public double ElevAngle { get; set; }
 
-        [JsonProperty("app_temp", NullValueHandling = NullValueHandling.Ignore)]
-        public double? AppTemp { get; set; }
+        [JsonProperty("app_temp")]
+        public double AppTemp { get; set; }
     }
 
     public partial class WeatherClass
     {
-        [JsonProperty("icon", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("icon")]
         public string Icon { get; set; }
 
-        [JsonProperty("code", NullValueHandling = NullValueHandling.Ignore)]
-        public long? Code { get; set; }
+        [JsonProperty("code")]
+        public long Code { get; set; }
 
-        [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("description")]
         public string Description { get; set; }
     }
 
     public partial class Weather
     {
-        public static Weather FromJson(string json) => JsonConvert.DeserializeObject<Weather>(json, JustBrewItWeatherApi.Converter.Settings);
+        public static Weather FromJson(string json) => JsonConvert.DeserializeObject<Weather>(json, WeatherAPI.Converter.Settings);
     }
 
     public static class Serialize
     {
-        public static string ToJson(this Weather self) => JsonConvert.SerializeObject(self, JustBrewItWeatherApi.Converter.Settings);
+        public static string ToJson(this Weather self) => JsonConvert.SerializeObject(self, WeatherAPI.Converter.Settings);
     }
 
     internal static class Converter
@@ -169,36 +168,5 @@ namespace JustBrewItWeatherApi
                 new IsoDateTimeConverter { DateTimeStyles = DateTimeStyles.AssumeUniversal }
             },
         };
-    }
-
-    internal class ParseStringConverter : JsonConverter
-    {
-        public override bool CanConvert(Type t) => t == typeof(long) || t == typeof(long?);
-
-        public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.TokenType == JsonToken.Null) return null;
-            var value = serializer.Deserialize<string>(reader);
-            long l;
-            if (Int64.TryParse(value, out l))
-            {
-                return l;
-            }
-            throw new Exception("Cannot unmarshal type long");
-        }
-
-        public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
-        {
-            if (untypedValue == null)
-            {
-                serializer.Serialize(writer, null);
-                return;
-            }
-            var value = (long)untypedValue;
-            serializer.Serialize(writer, value.ToString());
-            return;
-        }
-
-        public static readonly ParseStringConverter Singleton = new ParseStringConverter();
     }
 }

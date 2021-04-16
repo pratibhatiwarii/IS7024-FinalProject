@@ -1,7 +1,7 @@
 ﻿@page
 @model JustBrewIt.Pages.WeatherModel
 @{
-    var BreweryAPI = (JustBrewItWeatherApi.Weather)ViewData["WeatherAPI"];
+    var weather = (WeatherAPI.Weather)ViewData["WeatherAPI"];
 }
 
 
@@ -15,7 +15,7 @@
         </tr>
     </thead>
 
-    @foreach (var weather_info in BreweryAPI.Data)
+    @foreach (var weather_info in weather.Data)
     {
         <tbody>
             <tr>

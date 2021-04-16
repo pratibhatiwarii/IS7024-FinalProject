@@ -24,7 +24,7 @@ namespace JustBrewIt.Pages
         public string BreweryCity { get; set; }
         public bool IsSearchCity { get; set; }
         public bool IsSearchType { get; set; }
-        public string Url { get; set; }
+        public new string Url { get; set; }
         public bool IsSearchValid = true;
         public bool IsSearchEmpty = false;
 
@@ -78,7 +78,7 @@ namespace JustBrewIt.Pages
                 }
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 Console.WriteLine("Exception occured while searching the brewery");
             }
