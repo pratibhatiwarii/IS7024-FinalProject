@@ -10,12 +10,12 @@
 <body>
     @if (!Model.IsSearchCity || !Model.IsSearchType)
     {
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-            <h1 class="display-4 text-center">Search For Breweries Anywhere In The USA</h1>
-            <p class="lead text-center">Connect with the brewery of your choice and plan your visit refering to the latest weather report</p>
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4 text-center">Search For Breweries Anywhere In The USA</h1>
+                <p class="lead text-center">Connect with the brewery of your choice and plan your visit refering to the latest weather report</p>
+            </div>
         </div>
-    </div>
     }
     <form action="" method="POST" style="margin-top: 50px;">
         <div class="form-group">
@@ -44,56 +44,56 @@
         </div>
     </form>
     @if (Model.IsSearchEmpty)
-{<div class="row alert alert-warning">
-        Enter atleast one field to begin search!
-    </div>
-}
-else if (Model.IsSearchCity || Model.IsSearchType)
-{
-    if (Model.IsSearchValid == true)
-    {
-    <table class="table table-hover table-bordered">
-        <thead>
-            <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Brewery Type</th>
-                <th scope="col">Phone</th>
-                <th scope="col">City</th>
-                <th scope="col">Website</th>
-                <th></th>
-            </tr>
-        </thead>
-        @foreach (JustBrewItType.BreweryAPI brewery in Breweries)
-            {
-        <tbody>
-            <tr>
-                <td>@brewery.Name</td>
-                <td>@brewery.BreweryType</td>
-                <td>@brewery.Phone</td>
-                <td>@brewery.City</td>
-                @if (brewery.WebsiteUrl == null)
-                        {
-                <td></td>
-                        }
-                        else
-                        {
-                <td><a class="btn btn-link" href="@brewery.WebsiteUrl" target="_blank" role="button">@brewery.Name website </a></td>
-                        }
-                <td><a class="btn btn-sm btn-outline-primary" href="/ViewDetails?input=@brewery.Name&city=@brewery.City&website=@brewery.WebsiteUrl" target="_blank">More Details</a></td>
-            </tr>
-        </tbody>
-
-            }
-    </table>
+    {<div class="row alert alert-warning">
+            Enter atleast one field to begin search!
+        </div>
     }
-    else
+    else if (Model.IsSearchCity || Model.IsSearchType)
     {
-    <div class="row alert alert-warning">
-        No Data present for this search. Please try again with different data
-    </div>
-    }
+        if (Model.IsSearchValid == true)
+        {
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Brewery Type</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">City</th>
+                        <th scope="col">Website</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                @foreach (JustBrewItType.BreweryAPI brewery in Breweries)
+                {
+                    <tbody>
+                        <tr>
+                            <td>@brewery.Name</td>
+                            <td>@brewery.BreweryType</td>
+                            <td>@brewery.Phone</td>
+                            <td>@brewery.City</td>
+                            @if (brewery.WebsiteUrl == null)
+                            {
+                                <td></td>
+                            }
+                            else
+                            {
+                                <td><a class="btn btn-link" href="@brewery.WebsiteUrl" target="_blank" role="button">@brewery.Name website </a></td>
+                            }
+                            <td><a class="btn btn-sm btn-outline-primary" href="/ViewDetails?input=@brewery.Name&city=@brewery.City&website=@brewery.WebsiteUrl" target="_blank">More Details</a></td>
+                        </tr>
+                    </tbody>
 
-}
+                }
+            </table>
+        }
+        else
+        {
+            <div class="row alert alert-warning">
+                No Data present for this search. Please try again with different data
+            </div>
+        }
+
+    }
 
 </body>
 </html>

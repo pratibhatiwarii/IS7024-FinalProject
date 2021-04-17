@@ -14,24 +14,12 @@ namespace JustBrewIt.Pages
     {
         public JsonResult OnGet()
         {
-
-
-
             string url = "https://api.openbrewerydb.org/breweries";
-
             string breweryDetails = getData(url);
-
-
-
-            JustBrewItType.BreweryAPI[] array = JustBrewItType.BreweryAPI.FromJson(breweryDetails);
-
-
-
-            return new JsonResult(array);
+            JustBrewItType.BreweryAPI[] brewery = JustBrewItType.BreweryAPI.FromJson(breweryDetails);
+            return new JsonResult(brewery);
         }
-
-
-
+        
         private string getData(string url)
         {
             using (WebClient webClient = new WebClient())
