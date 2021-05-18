@@ -22,6 +22,11 @@ namespace JustBrewItGoogle
 
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
         public string Status { get; set; }
+
+        internal static GoogleRecords FromJson(object googleString)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public partial class Candidate
